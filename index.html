@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>猫蛙食堂</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <title>猫蛙食堂 - 俊八专属同人网站</title>
+    <base href="./">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* 全局样式重置 */
         * {
             margin: 0;
             padding: 0;
@@ -13,68 +18,95 @@
         }
 
         body {
-            font-family: "Microsoft YaHei", sans-serif;
+            font-family: 'Noto Sans SC', sans-serif;
             line-height: 1.6;
             color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
         }
 
         /* 导航栏样式 */
         .navbar {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 1rem 2rem;
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .nav-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2c3e50;
-            float: left;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.8rem;
             text-decoration: none;
-            display: inline-block;
-            padding: 0.5rem 0;
+            color: #e74c3c;
+            transition: color 0.3s ease;
+        }
+
+        .nav-brand:hover {
+            color: #c0392b;
         }
 
         .nav-links {
+            display: flex;
             list-style: none;
-            float: right;
         }
 
         .nav-links li {
-            display: inline-block;
-            margin-left: 2rem;
+            margin-left: 1.5rem;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #2c3e50;
+            color: #333;
+            font-size: 1rem;
             font-weight: 500;
             transition: color 0.3s ease;
-            cursor: pointer;
+            position: relative;
+            padding: 0.5rem 0;
         }
 
         .nav-links a:hover {
-            color: #3498db;
+            color: #e74c3c;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* 英雄区域样式 */
         .hero-section {
-            height: 100vh;
-            background-color: #f5f6fa;
-            background-image: url('./images/俊八首页图片.jpg');
+            background-image: url('images/俊八首页图片.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
+            background-attachment: fixed;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
+            position: relative;
             margin-top: 60px;
         }
 
@@ -85,110 +117,65 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
+            text-align: center;
+            color: white;
+            z-index: 1;
             max-width: 800px;
-            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .hero-content h1 {
-            font-size: 3.8rem;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3.5rem;
             margin-bottom: 2rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-weight: 700;
-            letter-spacing: 2px;
-            animation: fadeInDown 1s ease-out;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero-content p {
-            font-size: 1.4rem;
-            max-width: 700px;
-            margin: 1.2rem auto;
+            font-size: 1.2rem;
+            margin: 1rem auto;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            line-height: 1.8;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-            animation-delay: 0.3s;
-        }
-
-        .hero-content p:nth-child(2) {
-            animation-delay: 0.6s;
+            animation: fadeInUp 1.2s ease-out;
         }
 
         .hero-content p:nth-child(3) {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #ffd700;
-            animation-delay: 0.9s;
-        }
-
-        .hero-content p:nth-child(4) {
-            font-weight: 500;
-            animation-delay: 1.2s;
-        }
-
-        .hero-content p:nth-child(5) {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            animation-delay: 1.5s;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1.5rem auto;
+            animation: fadeInUp 1.4s ease-out;
         }
 
         /* 主要内容区域样式 */
         .main-content {
-            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* 内容区域 - 默认显示首页 */
-        .page-content {
-            display: none;
-        }
-
-        .page-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
+            padding: 4rem 2rem;
         }
 
         /* 首页特定样式 */
         .intro-section {
-            position: relative;
-            min-height: 400px;
-            padding: 40px;
-            overflow: hidden;
-            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
             margin-bottom: 3rem;
-            border-radius: 15px;
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .slideshow-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            animation: slideShow 20s infinite;
-            opacity: 0.8;
-            background-size: cover;
-        }
-
-        @keyframes slideShow {
-            0%, 100% { background-image: url('images/slideshow/slide1.jpg'); }
-            25% { background-image: url('images/slideshow/slide2.jpg'); }
-            50% { background-image: url('images/slideshow/slide3.jpg'); }
-            75% { background-image: url('images/slideshow/slide4.jpg'); }
+        .intro-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
         .intro-section::before {
@@ -197,211 +184,72 @@
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 10% 10%, rgba(52, 152, 219, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(155, 89, 182, 0.05) 0%, transparent 50%),
-                linear-gradient(120deg, rgba(241, 196, 15, 0.03) 0%, transparent 50%),
-                linear-gradient(-120deg, rgba(231, 76, 60, 0.03) 0%, transparent 50%);
-            z-index: 0;
-        }
-
-        .intro-section::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            right: -50%;
-            bottom: -50%;
-            background: 
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-            z-index: -1;
-            animation: subtleFloat 30s linear infinite;
+            height: 5px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #2ecc71, #3498db);
         }
 
         .intro-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #2c3e50;
-            position: relative;
-            display: inline-block;
-            z-index: 1;
-            background: rgba(255,255,255,0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .intro-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #3498db, #9b59b6);
-            border-radius: 2px;
-            opacity: 0.8;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
 
         .intro-section p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            color: #34495e;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-            position: relative;
-            z-index: 1;
-            background: linear-gradient(120deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            backdrop-filter: blur(5px);
-        }
-
-        .intro-section p:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-
-        .intro-section p:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-
-        /* 作者页面样式 */
-        .authors-section {
+            color: #555;
+            margin-bottom: 1rem;
             text-align: center;
-            padding: 2rem;
-        }
-
-        /* 文学作品页面样式 */
-        .literature-section {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* 绘画作品页面样式 */
-        .artwork-section {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* 视频作品页面样式 */
-        .videos-section {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* 国际化计划页面样式 */
-        .project-intro {
-            margin: 40px auto;
-            max-width: 1000px;
-            text-align: center;
-        }
-
-        .cover-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
         }
 
         /* 幻灯片基础样式 */
         .slideshow-container {
+            max-width: 1000px;
             position: relative;
-            width: 100%;
-            height: 100vh;
+            margin: auto;
+            border-radius: 10px;
             overflow: hidden;
-            background-color: #000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* 幻灯片 */
-        .slide {
+        .slideshow-bg {
+            background-image: url('images/slideshow/slide1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .slideshow-bg::before {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.8s ease-in-out, visibility 0.8s;
-        }
-
-        .slide.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        /* 幻灯片文字遮罩 */
-        .slide-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 3rem 2rem;
-            color: white;
-            text-align: center;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.5s ease-in-out;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
         }
 
-        .slide.active .slide-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .slide-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .slide-description {
-            font-size: 1.4rem;
-            margin: 0;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            opacity: 0.9;
-        }
-
-        /* 导航按钮 */
+        /* 导航按钮样式 */
         .prev, .next {
+            cursor: pointer;
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.4);
+            width: auto;
+            padding: 1rem 1.5rem;
+            margin-top: -22px;
             color: white;
-            padding: 1.5rem 1rem;
-            border: none;
-            cursor: pointer;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-            z-index: 2;
-            opacity: 0.6;
-        }
-
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-            opacity: 1;
-            padding: 1.8rem 1.2rem;
-        }
-
-        .prev {
-            left: 0;
+            font-weight: bold;
+            font-size: 1.8rem;
+            transition: 0.6s ease;
             border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
         .next {
@@ -409,65 +257,37 @@
             border-radius: 3px 0 0 3px;
         }
 
-        /* 指示点 */
-        .dots {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 10px 20px;
-            border-radius: 20px;
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
-        .dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            margin: 0 6px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background-color: white;
-            transform: scale(1.3);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        .dot:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-            transform: scale(1.2);
-        }
-
-        /* 新增方块图片样式 */
-        .square-link {
-            display: inline-block;
-            text-decoration: none;
-        }
-
+        /* 方块图片样式 */
         .square-image-container {
-            position: relative;
             width: 300px;
             height: 300px;
-            margin: 0 auto;
+            position: relative;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            margin: 1rem;
         }
 
         .square-image-container:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .square-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .square-image-container:hover .square-image {
+            transform: scale(1.05);
         }
 
         .image-title {
@@ -475,92 +295,130 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            background-color: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
             text-align: center;
-            font-family: 'Arial', sans-serif;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        /* 艺术字体处理 */
-        body {
-            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        .nav-brand, h1, h2, h3 {
-            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links a {
-            font-family: 'Roboto', 'PingFang SC', sans-serif;
+            font-size: 1.3rem;
             font-weight: 500;
+            transition: background-color 0.3s ease;
         }
 
-        .hero-content h1 {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .square-image-container:hover .image-title {
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
-        .intro-section p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        footer {
-            font-family: 'SF Pro Text', 'PingFang SC', sans-serif;
-            font-size: 0.9rem;
-        }
-
-        /* 导航栏双语设置 */
-        .nav-links li a::after {
-            content: attr(data-en);
-            display: block;
-            font-size: 0.8em;
-            color: #666;
+        /* 作者页面样式 */
+        .authors-section {
             text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .authors-section h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        /* 文学作品页面样式 */
+        .literature-section {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .literature-section h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        /* 绘画作品页面样式 */
+        .artwork-section {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .artwork-section h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        /* 视频作品页面样式 */
+        .videos-section {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .videos-section h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        /* 国际化计划页面样式 */
+        .project-intro {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .square-link {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* 页面内容通用样式 */
+        .page-content {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page-content.active {
+            display: block;
         }
 
         /* 页脚样式 */
         footer {
-            background-color: #2c3e50;
+            background-color: #333;
             color: white;
             text-align: center;
             padding: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
         }
 
         /* 动画效果 */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -572,291 +430,15 @@
             }
         }
 
-        @keyframes subtleFloat {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            50% {
-                transform: translate(20px, 20px) rotate(5deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
+        /* 幻灯片动画 */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
         }
 
-        /* 全局响应式设置 */
-        /* 基础设置：确保移动设备正常显示 */
-        html {
-            font-size: 16px;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-        }
-
-        /* 平板响应式 (768px以下) */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0.8rem 1rem;
-            }
-            
-            .nav-brand {
-                font-size: 1.2rem;
-                float: none;
-                text-align: center;
-                display: block;
-                margin-bottom: 0.5rem;
-            }
-            
-            .nav-links {
-                float: none;
-                text-align: center;
-            }
-            
-            .nav-links li {
-                display: inline-block;
-                margin: 0 0.5rem;
-            }
-            
-            .hero-section {
-                height: 80vh;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.2rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-content p:nth-child(3) {
-                font-size: 1.3rem;
-            }
-            
-            .main-content {
-                padding: 3rem 1rem;
-            }
-            
-            .intro-section {
-                padding: 1.5rem;
-            }
-            
-            .intro-section h2 {
-                font-size: 1.8rem;
-            }
-            
-            .intro-section p {
-                font-size: 1rem;
-            }
-            
-            .square-image-container {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .image-title {
-                font-size: 1.2rem;
-                padding: 15px;
-            }
-            
-            .slide-title {
-                font-size: 1.8rem;
-            }
-            
-            .slide-description {
-                font-size: 1.1rem;
-            }
-            
-            .prev, .next {
-                padding: 1rem 0.8rem;
-                font-size: 1.5rem;
-            }
-            
-            .dots {
-                bottom: 20px;
-            }
-            
-            .dot {
-                width: 8px;
-                height: 8px;
-                margin: 0 4px;
-            }
-        }
-
-        /* 大屏幕手机响应式 (640px以下) */
-        @media (max-width: 640px) {
-            .nav-brand {
-                font-size: 1.1rem;
-            }
-            
-            .nav-links a {
-                font-size: 0.9rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .intro-section h2 {
-                font-size: 1.6rem;
-            }
-            
-            .square-image-container {
-                width: 220px;
-                height: 220px;
-            }
-        }
-
-        /* 中等屏幕手机响应式 (480px以下) */
-        @media (max-width: 480px) {
-            html {
-                font-size: 14px;
-            }
-            
-            .navbar {
-                padding: 0.6rem 0.8rem;
-            }
-            
-            .nav-links li {
-                display: block;
-                margin: 0.3rem 0;
-            }
-            
-            .hero-section {
-                height: 70vh;
-                margin-top: 50px;
-            }
-            
-            .hero-content {
-                padding: 1rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-            }
-            
-            .hero-content p {
-                font-size: 0.95rem;
-                margin: 0.8rem auto;
-            }
-            
-            .hero-content p:nth-child(3) {
-                font-size: 1.1rem;
-            }
-            
-            .main-content {
-                padding: 2rem 0.8rem;
-            }
-            
-            .intro-section {
-                padding: 1.2rem 1rem;
-            }
-            
-            .intro-section h2 {
-                font-size: 1.5rem;
-            }
-            
-            .intro-section p {
-                font-size: 0.95rem;
-                padding: 0.8rem;
-            }
-            
-            .square-image-container {
-                width: 100%;
-                max-width: 200px;
-                height: 200px;
-            }
-            
-            .image-title {
-                font-size: 1rem;
-                padding: 12px;
-            }
-            
-            /* 幻灯片响应式优化 */
-            .slide-title {
-                font-size: 1.5rem;
-            }
-            
-            .slide-description {
-                font-size: 1rem;
-            }
-            
-            .prev, .next {
-                padding: 0.8rem 0.6rem;
-                font-size: 1.3rem;
-            }
-            
-            .dots {
-                bottom: 20px;
-                padding: 8px 15px;
-            }
-            
-            .dot {
-                width: 8px;
-                height: 8px;
-                margin: 0 4px;
-            }
-        }
-
-        /* 小屏幕手机响应式 (375px以下) */
-        @media (max-width: 375px) {
-            html {
-                font-size: 13px;
-            }
-            
-            .navbar {
-                padding: 0.5rem 0.6rem;
-            }
-            
-            .nav-brand {
-                font-size: 1rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 1.6rem;
-            }
-            
-            .hero-content p {
-                font-size: 0.9rem;
-            }
-            
-            .intro-section h2 {
-                font-size: 1.4rem;
-            }
-            
-            .square-image-container {
-                width: 100%;
-                max-width: 180px;
-                height: 180px;
-            }
-            
-            /* 优化点击目标大小 - 移动设备触摸友好 */
-            a, button, .dot {
-                min-height: 44px;
-                min-width: 44px;
-            }
-        }
-
-        /* 极小型设备响应式 (320px以下) */
-        @media (max-width: 320px) {
-            .hero-content h1 {
-                font-size: 1.4rem;
-            }
-            
-            .intro-section h2 {
-                font-size: 1.3rem;
-            }
-            
-            footer {
-                padding: 1.5rem 1rem;
-                font-size: 0.85rem;
-            }
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
         }
     </style>
 </head>
