@@ -3,570 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>猫蛙食堂 - 俊八专属同人网站</title>
-    <base href="./">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>猫蛙食堂</title>
+    <link rel="stylesheet" href="样式.css">
     <style>
-        /* 全局样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-            overflow-x: hidden;
-        }
-
-        /* 导航栏样式 */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 1rem 2rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-brand {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 1.8rem;
-            text-decoration: none;
-            color: #e74c3c;
-            transition: color 0.3s ease;
-        }
-
-        .nav-brand:hover {
-            color: #c0392b;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a:hover {
-            color: #e74c3c;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #e74c3c;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* 英雄区域样式 */
-        .hero-section {
-            background-image: url('images/俊八首页图片.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin-top: 60px;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(2px);
-        }
-
-        .hero-content {
-            text-align: center;
-            color: white;
-            z-index: 1;
-            max-width: 800px;
-            padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-content h1 {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 3.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin: 1rem auto;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        .hero-content p:nth-child(3) {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 1.5rem auto;
-            animation: fadeInUp 1.4s ease-out;
-        }
-
-        /* 主要内容区域样式 */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        /* 首页特定样式 */
+        /* 新增幻灯片样式 */
         .intro-section {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-bottom: 3rem;
             position: relative;
+            min-height: 400px;
+            padding: 40px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .intro-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .intro-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #e74c3c, #f39c12, #2ecc71, #3498db);
-        }
-
-        .intro-section h2 {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 2.2rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .intro-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        /* 幻灯片基础样式 */
-        .slideshow-container {
-            max-width: 1000px;
-            position: relative;
-            margin: auto;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-
+        
         .slideshow-bg {
-            background-image: url('images/slideshow/slide1.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 300px;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .slideshow-bg::before {
-            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-
-        /* 导航按钮样式 */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 1rem 1.5rem;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 1.8rem;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        /* 方块图片样式 */
-        .square-image-container {
-            width: 300px;
-            height: 300px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block;
-            margin: 1rem;
-        }
-
-        .square-image-container:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .square-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            z-index: -1;
+            animation: slideShow 20s infinite;
+            opacity: 0.8;
+            background-size: cover;
         }
 
-        .square-image-container:hover .square-image {
-            transform: scale(1.05);
+        @keyframes slideShow {
+            0%, 100% { background-image: url('images/slideshow/slide1.jpg'); }
+            25% { background-image: url('images/slideshow/slide2.jpg'); }
+            50% { background-image: url('images/slideshow/slide3.jpg'); }
+            75% { background-image: url('images/slideshow/slide4.jpg'); }
         }
 
-        .image-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
+        .intro-section h2,
+        .intro-section p {
+            position: relative;
+            background: rgba(255,255,255,0.8);
             padding: 20px;
-            text-align: center;
-            font-size: 1.3rem;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-
-        .square-image-container:hover .image-title {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        /* 作者页面样式 */
-        .authors-section {
-            text-align: center;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .authors-section h1 {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        /* 文学作品页面样式 */
-        .literature-section {
-            text-align: center;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .literature-section h1 {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        /* 绘画作品页面样式 */
-        .artwork-section {
-            text-align: center;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .artwork-section h1 {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        /* 视频作品页面样式 */
-        .videos-section {
-            text-align: center;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .videos-section h1 {
-            font-family: 'Ma Shan Zheng', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        /* 国际化计划页面样式 */
-        .project-intro {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .square-link {
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        /* 页面内容通用样式 */
-        .page-content {
-            display: none;
-            min-height: 100vh;
-        }
-
-        .page-content.active {
-            display: block;
-        }
-
-        /* 页脚样式 */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* 动画效果 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 幻灯片动画 */
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {opacity: .4}
-            to {opacity: 1}
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
-        <a href="#" class="nav-brand" onclick="showPage('home'); return false;">🐱 猫蛙食堂 🐸</a>
+        <a href="首页.html" class="nav-brand">🐱 猫蛙食堂 🐸</a>
         <ul class="nav-links">
-            <li><a href="#" data-en="Home" onclick="showPage('home'); return false;">首页</a></li>
-            <li><a href="#" data-en="Authors" onclick="showPage('authors'); return false;">作者</a></li>
-            <li><a href="#" data-en="Literature" onclick="showPage('literature'); return false;">文学作品</a></li>
-            <li><a href="#" data-en="Artworks" onclick="showPage('artwork'); return false;">绘画作品</a></li>
-            <li><a href="#" data-en="Videos" onclick="showPage('videos'); return false;">视频作品</a></li>
-            <li><a href="#" data-en="International" onclick="showPage('international'); return false;">国际化计划</a></li>
+            <li><a href="首页.html" data-en="Home">首页</a></li>
+            <li><a href="作者.html" data-en="Authors">作者</a></li>
+            <li><a href="文学作品.html" data-en="Literature">文学作品</a></li>
+            <li><a href="绘画作品.html" data-en="Artworks">绘画作品</a></li>
+            <li><a href="视频作品.html" data-en="Videos">视频作品</a></li>
+            <li><a href="国际化.html" data-en="International">国际化计划</a></li>
         </ul>
     </nav>
     
-    <!-- 首页内容 -->
-    <div id="home" class="page-content active">
-        <div class="hero-section">
-            <div class="hero-content">
-                <h1>欢迎来到猫蛙食堂</h1>
-                <p>这里是关于SEVENTEEN成员文俊辉与徐明浩的专属同人网站</p>
-                <p>ONLY FOR JUN AND THE8</p>
-                <p>仅俊八不拆不逆</p>
-                <p>所有资源均来自网络，仅供个人学习交流使用</p>
-            </div>
+    <div class="hero-section">
+        <!-- 这里是背景图片部分 -->
+        <div class="hero-content">
+            <h1>欢迎来到猫蛙食堂</h1>
+            <p>这里是关于SEVENTEEN成员文俊辉与徐明浩的专属同人网站</p>
+            <p>ONLY FOR JUN AND THE8</p>
+            <p>仅俊八不拆不逆</p>
+            <p>所有资源均来自网络，仅供个人学习交流使用</p>
         </div>
-
-        <main class="main-content">
-            <section class="intro-section">
-                <div class="slideshow-bg"></div>
-                <h2>关于我们</h2>
-                <p>猫蛙食堂致力于收集和展示优秀的同人创作，包括文学、绘画和视频作品！</p>
-                <p>这里是月光石们的温暖港湾，我们用创意和热爱编织属于他们的故事，让每一份灵感都绽放成美好的作品。</p>
-                <p>愿每一位来到这里的创作者都能找到共鸣，让我们一起用作品传递对他们的爱意。</p>
-            </section>
-        </main>
     </div>
 
-    <!-- 作者页面内容 -->
-    <div id="authors" class="page-content">
-        <main class="main-content">
-            <h1>作者专区</h1>
-            <section class="authors-section">
-                <p>这里将展示所有创作者的信息和作品集</p>
-                <!-- 这里可以添加作者列表和详细信息 -->
-            </section>
-        </main>
-    </div>
-
-    <!-- 文学作品页面内容 -->
-    <div id="literature" class="page-content">
-        <main class="main-content">
-            <h1>文学作品</h1>
-            <section class="literature-section">
-                <p>这里收录了优秀的同人文学作品</p>
-                <!-- 这里可以添加文学作品列表和分类 -->
-            </section>
-        </main>
-    </div>
-
-    <!-- 绘画作品页面内容 -->
-    <div id="artwork" class="page-content">
-        <main class="main-content">
-            <h1>绘画作品</h1>
-            <section class="artwork-section">
-                <p>这里展示了精美的同人绘画作品</p>
-                <!-- 这里可以添加绘画作品展示区 -->
-            </section>
-        </main>
-    </div>
-
-    <!-- 视频作品页面内容 -->
-    <div id="videos" class="page-content">
-        <main class="main-content">
-            <h1>视频作品</h1>
-            <section class="videos-section">
-                <p>这里收录了精彩的同人视频作品</p>
-                <!-- 这里可以添加视频作品展示区 -->
-            </section>
-        </main>
-    </div>
-
-    <!-- 国际化计划页面内容 -->
-    <div id="international" class="page-content">
-        <main class="main-content">
-            <section class="project-intro">
-                <a href="https://weibo.com/6018280345/5153964288119087" target="_blank" class="square-link">
-                    <div class="square-image-container">
-                        <img src="images/slideshow/slide5.JPG" alt="项目简介封面" class="square-image">
-                        <div class="image-title">国际化计划</div>
-                    </div>
-                </a>
-            </section>
-        </main>
-    </div>
+    <main class="main-content">
+        <section class="intro-section">
+            <div class="slideshow-bg"></div>
+            <h2>关于我们</h2>
+            <p>猫蛙食堂致力于收集和展示优秀的同人创作，包括文学、绘画和视频作品！</p>
+            <p>这里是月光石们的温暖港湾，我们用创意和热爱编织属于他们的故事，让每一份灵感都绽放成美好的作品。</p>
+            <p>愿每一位来到这里的创作者都能找到共鸣，让我们一起用作品传递对他们的爱意。</p>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2025 猫蛙食堂 版权所有</p>
         <p>作者&copy;<a href="https://weibo.com/u/6018280345" target="_blank" style="color: white; text-decoration: underline;">吃个乐饼八</a></p>
         <p>资源整合&copy;<a href="https://weibo.com/u/7231200372" target="_blank" style="color: white; text-decoration: underline;">炀廷</a></p>
     </footer>
-
-    <script>
-        // 页面切换功能
-        function showPage(pageId) {
-            // 隐藏所有页面
-            const pages = document.querySelectorAll('.page-content');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // 显示选中的页面
-            const selectedPage = document.getElementById(pageId);
-            if (selectedPage) {
-                selectedPage.classList.add('active');
-                
-                // 滚动到页面顶部
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-        
-        // 为了更好的用户体验，确保URL变化时不会跳转
-        document.querySelectorAll('a[href="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-            });
-        });
-    </script>
 </body>
 </html>
